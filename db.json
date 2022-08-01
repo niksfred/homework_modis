@@ -1,4 +1,214 @@
 {
-    "annotations":{},
-    "favourites": {}
+  "annotations": [
+    {}
+  ],
+  "favourites": [
+    {
+      "kind": "books#volume",
+      "id": "49gDAAAAMBAJ",
+      "etag": "FSiNhnq7LVU",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/49gDAAAAMBAJ",
+      "volumeInfo": {
+        "title": "Popular Mechanics",
+        "publishedDate": "1951-09",
+        "description": "Popular Mechanics inspires, instructs and influences readers to help them master the modern world. Whether it’s practical DIY home-improvement tips, gadgets and digital technology, information on the newest cars or the latest breakthroughs in science -- PM is the ultimate guide to our high-tech lifestyle.",
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 304,
+        "printType": "MAGAZINE",
+        "averageRating": 5,
+        "ratingsCount": 1,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.0.1.0.preview.1",
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=49gDAAAAMBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=49gDAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=49gDAAAAMBAJ&printsec=frontcover&dq=mechanics&hl=&cd=1&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=49gDAAAAMBAJ&dq=mechanics&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Popular_Mechanics.html?hl=&id=49gDAAAAMBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "ALL_PAGES",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=49gDAAAAMBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Whether it’s practical DIY home-improvement tips, gadgets and digital technology, information on the newest cars or the latest breakthroughs in science -- PM is the ultimate guide to our high-tech lifestyle."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "9BWkxto2fcEC",
+      "etag": "GbVj7vBnJM8",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/9BWkxto2fcEC",
+      "volumeInfo": {
+        "title": "Quality Control for Dummies",
+        "authors": [
+          "Larry Webber",
+          "Michael Wallace"
+        ],
+        "publisher": "John Wiley & Sons",
+        "publishedDate": "2011-02-25",
+        "description": "So you’ve been asked to lead a quality control initiative? Or maybe you’ve been assigned to a quality team. Perhaps you’re a CEO whose main concern is to make your company faster, more efficient, and less expensive. Whatever your role is, quality control is a critical concept in every industry and profession. Quality Control For Dummies is the straightforward, easy guide to improving your company’s quality. It covers all of today’s available options and provides expert techniques for introducing quality methods to your company, collecting data, designing quality processes, and more. This hands-on guide gives you all the tools you’ll ever need to enhance your company’s quality, including: Understanding the importance of quality standards Putting fundamental quality control methods to use Listening to your customer about quality issues Whipping quality control into shape with Lean Working with value stream mapping Focusing on the 5S method Supplement a process with Kanban Fixing tough problems with Six Sigma Using QFD to win customers over Improving you company with TOC This invaluable reference is written from an unbiased viewpoint, giving you all the facts about each theory with no fuzzy coverings. It also includes steps for incorporating quality into a new product and Web sites packed with quality control tips and techniques. With Quality Control For Dummies, you’ll be able to speed up production, eliminate waste, and save money!",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_13",
+            "identifier": "9781118051030"
+          },
+          {
+            "type": "ISBN_10",
+            "identifier": "1118051033"
+          }
+        ],
+        "readingModes": {
+          "text": true,
+          "image": true
+        },
+        "pageCount": 384,
+        "printType": "BOOK",
+        "categories": [
+          "Business & Economics"
+        ],
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "0.6.9.0.preview.3",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=9BWkxto2fcEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=9BWkxto2fcEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=9BWkxto2fcEC&pg=PA307&dq=fmea&hl=&cd=10&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=9BWkxto2fcEC&dq=fmea&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Quality_Control_for_Dummies.html?hl=&id=9BWkxto2fcEC"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Quality_Control_for_Dummies-sample-epub.acsm?id=9BWkxto2fcEC&format=epub&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "pdf": {
+          "isAvailable": true,
+          "acsTokenLink": "http://books.google.com/books/download/Quality_Control_for_Dummies-sample-pdf.acsm?id=9BWkxto2fcEC&format=pdf&output=acs4_fulfillment_token&dl_type=sample&source=gbs_api"
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=9BWkxto2fcEC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Most <b>FMEA</b> tools are built with spreadsheets, following these steps: 1. Make a list of potential problems for the step. 2. Come up with mitigation actions to avoid the problems. 3. Rank the list of problems and solutions by sorting the&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "j0suwMVheIYC",
+      "etag": "OaYbNGEO8tI",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/j0suwMVheIYC",
+      "volumeInfo": {
+        "title": "Managing the Aging Workforce",
+        "subtitle": "Challenges and Solutions",
+        "authors": [
+          "Marius Leibold",
+          "Sven C. Voelpel"
+        ],
+        "publisher": "John Wiley & Sons",
+        "publishedDate": "2007-06-27",
+        "description": "Managing the Aging Workforce is one of the crucial topics for many of the world ́s enterprises. The increasing average age of populations does not only affect social systems, countries and communities, but also has a strong impact on the work of businesses and companies. The decline in demographic fitness will not only hit countries like the U.S., the Western European countries, or Japan, but also the upcoming societies in China or in the Eastern European countries. In many of these countries, during three or four decades the average age will grow from about 40 years now to about 50 years. Where experts are needed, this may result in an increase of the workforce's age of between 5 and 10 years in only one decade. For companies thus, a number of challenges arise that have to be overcome fast and continuously. The main topics in this field will be new strategies in leadership, new concepts in health management, new ways in knowledge management and learning, as well as new models how to drive ideas for diversity and innovation. On the one hand, enterprises therefore will have to invest in their aging employees for supporting their talents, helping them to learn and keeping them in the company. On the other, they will have to increase productivity, keep on searching for new products, and integrate experts from abroad. This has to be combined with new ways of strategies and HR management. This book presents an analysis of the present and upcoming situation, and an introduction into the strategic concepts enterprises will need to survive in aging societies.",
+        "industryIdentifiers": [
+          {
+            "type": "ISBN_10",
+            "identifier": "389578611X"
+          },
+          {
+            "type": "ISBN_13",
+            "identifier": "9783895786112"
+          }
+        ],
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 240,
+        "printType": "BOOK",
+        "categories": [
+          "Business & Economics"
+        ],
+        "averageRating": 4,
+        "ratingsCount": 1,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": true,
+        "contentVersion": "2.5.0.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=j0suwMVheIYC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=j0suwMVheIYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=j0suwMVheIYC&pg=PA202&dq=asda&hl=&cd=5&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=j0suwMVheIYC&dq=asda&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Managing_the_Aging_Workforce.html?hl=&id=j0suwMVheIYC"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "PARTIAL",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=j0suwMVheIYC&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Since on-call work usually involves varying shifts, it is ideal for older workers who have few specific demands on their time. The following box illustrates how <b>ASDA</b> attracts older workers on a parttime&nbsp;..."
+      }
+    }
+  ]
 }
