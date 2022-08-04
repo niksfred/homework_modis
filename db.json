@@ -1,6 +1,20 @@
 {
   "annotations": [
-    {}
+    {
+      "id": 1,
+      "bookId": "49gDAAAAMBAJ",
+      "content": "This is a sample annotation created manually inside the db file."
+    },
+    {
+      "bookId": "49gDAAAAMBAJ",
+      "content": "Yes, this is new annotation",
+      "id": 2
+    },
+    {
+      "bookId": "49gDAAAAMBAJ",
+      "content": "Hello, one more!",
+      "id": 3
+    }
   ],
   "favourites": [
     {

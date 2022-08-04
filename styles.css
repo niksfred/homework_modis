@@ -132,7 +132,26 @@ header {
 
 .annotations-header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+.annotations-header>div>input {
+    width: 80%;
+    padding: 5px 0px; 
+}
+
+
+
+.annotation-card {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.annotation-card p {
+    width: 80%;
 }
 
 .actions-container {

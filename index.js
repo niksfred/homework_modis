@@ -1,4 +1,4 @@
-import { fetchSearchResults, fetchFavourites, deleteFavourite, addFavourite } from "/api.js";
+import { fetchSearchResults, fetchFavourites, deleteFavourite, addFavourite, fetchAnnotations, createAnnotation } from "/api.js";
 
 (function atStart() {
   renderSearchPage();
@@ -59,9 +59,27 @@ function renderHeader(page) {
   });
 }
 
-function renderContentCard(contentContainer, item, isFavourite, page) {
-  console.log("renderContentCard");
+function renderAnotations(annotations, container){
+  annotations.forEach((annotation) => {
+    const {id, content} = annotation
+    const annotationEl = document.createElement("div");
+    annotationEl.classList.add("annotation-card")
+    annotationEl.dataset.annotationId = id
+    annotationEl.innerHTML = `<p>${content}</p>`
+    container.appendChild(annotationEl)
+  })
+} 
 
+async function renderContentCard(contentContainer, item, isFavourite, page) {
+  console.log("renderContentCard");
+  const { volumeInfo: bookInfo, id } = item;
+
+  
+  const title = bookInfo.title;
+  const authors = bookInfo?.authors?.join(", ");
+  const description = bookInfo.description;
+  const image = bookInfo.imageLinks.thumbnail;
+  
   let favouriteIcon
   if (page === "favourites") {
     favouriteIcon = getTrashIcon()
@@ -69,11 +87,6 @@ function renderContentCard(contentContainer, item, isFavourite, page) {
     favouriteIcon =  getHeartIcon("filled") 
   } else {favouriteIcon = getHeartIcon()}
 
-  const { volumeInfo: bookInfo, id } = item;
-  const title = bookInfo.title;
-  const authors = bookInfo?.authors?.join(", ");
-  const description = bookInfo.description;
-  const image = bookInfo.imageLinks.thumbnail;
   const contentCard = document.createElement("div");
   contentCard.classList.add("content-card");
   contentCard.dataset.bookId = id;
@@ -86,12 +99,16 @@ function renderContentCard(contentContainer, item, isFavourite, page) {
   <h3>Description:</h3>
   <p>${description || "No description available"}</p>
   <div class="annotations-header" >
-  <p>Add annotation:</p>
-  <button class="annotation-action">
-  Add annotation
+  <h3>New annotation:</h3>
+  <div>
+  <input data-new-annotation-value="${id}"/>
+  <button class="annotation-action" data-add-annotation-book-id="${id}">
+  +
   </button>
   </div>
-  <div id="annotations-container"></div>
+  </div>
+  <div class="annotations-container" data-annotations-container="${id}">
+  </div>
   </div>
   </div>
   <button class="favourite-button" data-favourites-id="${id}">
@@ -100,7 +117,14 @@ function renderContentCard(contentContainer, item, isFavourite, page) {
   `;
   contentContainer.appendChild(contentCard);
 
-  const favouriteButton = document.querySelector(`[data-favourites-id="${id}"`)
+  const annotations = await fetchAnnotations(id)
+  console.log(annotations.length> 0)
+  if (annotations.length > 0) {
+    const annotationsContainer = document.querySelector(`[data-annotations-container="${id}"]`)
+    renderAnotations(annotations, annotationsContainer)
+  }
+
+  const favouriteButton = document.querySelector(`[data-favourites-id="${id}"]`)
   favouriteButton.addEventListener("click", async () => {
       if (page === "favourites"){
         deleteFavourite(id)
@@ -118,6 +142,16 @@ function renderContentCard(contentContainer, item, isFavourite, page) {
           }
         }
 })
+
+const newAnnotationInput = document.querySelector(`[data-new-annotation-value="${id}"]`)
+const addAnnotationButton = document.querySelector(`[data-add-annotation-book-id="${id}"]`)
+addAnnotationButton.addEventListener("click", async () => {
+  if(newAnnotationInput.value !== ""){
+    const newAnnotation = {bookId: id, content: newAnnotationInput.value}
+    await createAnnotation(newAnnotation)
+    newAnnotationInput.value = ""
+  }
+ })
 }
 
 
@@ -142,7 +176,7 @@ async function renderContent(items, page, favouriteBooks = null) {
   }
 }
 
-function renderSearchPage() {
+async function renderSearchPage() {
   const page = "search"
   document.body.innerHTML = "";
   console.log("renderSearchPage");
