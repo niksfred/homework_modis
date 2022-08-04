@@ -12,3 +12,22 @@ export async function fetchSearchResults(searchInput) {
   const { items } = res;
   return items;
 }
+
+export async function deleteFavourite(id) {
+  await fetch(`http://localhost:3000/favourites/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "DELETE",
+      });
+}
+
+export async function addFavourite(book) {
+  await fetch(`http://localhost:3000/favourites`, {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              method: "POST",
+              body: JSON.stringify(book),
+            });
+}
