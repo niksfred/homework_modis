@@ -11,9 +11,19 @@
       "id": 2
     },
     {
+      "id": 3,
       "bookId": "49gDAAAAMBAJ",
-      "content": "Hello, one more!",
-      "id": 3
+      "content": "Hello, one more! test it works"
+    },
+    {
+      "bookId": "49gDAAAAMBAJ",
+      "content": "kill me three",
+      "id": 4
+    },
+    {
+      "bookId": "RdMDAAAAMBAJ",
+      "content": "Hello there general Kenobi! ",
+      "id": 5
     }
   ],
   "favourites": [
@@ -145,6 +155,64 @@
       },
       "searchInfo": {
         "textSnippet": "Most <b>FMEA</b> tools are built with spreadsheets, following these steps: 1. Make a list of potential problems for the step. 2. Come up with mitigation actions to avoid the problems. 3. Rank the list of problems and solutions by sorting the&nbsp;..."
+      }
+    },
+    {
+      "kind": "books#volume",
+      "id": "RdMDAAAAMBAJ",
+      "etag": "4H0vV1cq0rU",
+      "selfLink": "https://www.googleapis.com/books/v1/volumes/RdMDAAAAMBAJ",
+      "volumeInfo": {
+        "title": "Popular Mechanics",
+        "publishedDate": "2005-01",
+        "description": "Popular Mechanics inspires, instructs and influences readers to help them master the modern world. Whether it’s practical DIY home-improvement tips, gadgets and digital technology, information on the newest cars or the latest breakthroughs in science -- PM is the ultimate guide to our high-tech lifestyle.",
+        "readingModes": {
+          "text": false,
+          "image": true
+        },
+        "pageCount": 126,
+        "printType": "MAGAZINE",
+        "averageRating": 4.5,
+        "ratingsCount": 2,
+        "maturityRating": "NOT_MATURE",
+        "allowAnonLogging": false,
+        "contentVersion": "0.0.2.0.preview.1",
+        "panelizationSummary": {
+          "containsEpubBubbles": false,
+          "containsImageBubbles": false
+        },
+        "imageLinks": {
+          "smallThumbnail": "http://books.google.com/books/content?id=RdMDAAAAMBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+          "thumbnail": "http://books.google.com/books/content?id=RdMDAAAAMBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+        },
+        "language": "en",
+        "previewLink": "http://books.google.com/books?id=RdMDAAAAMBAJ&printsec=frontcover&dq=mechanics&hl=&cd=2&source=gbs_api",
+        "infoLink": "http://books.google.com/books?id=RdMDAAAAMBAJ&dq=mechanics&hl=&source=gbs_api",
+        "canonicalVolumeLink": "https://books.google.com/books/about/Popular_Mechanics.html?hl=&id=RdMDAAAAMBAJ"
+      },
+      "saleInfo": {
+        "country": "BG",
+        "saleability": "NOT_FOR_SALE",
+        "isEbook": false
+      },
+      "accessInfo": {
+        "country": "BG",
+        "viewability": "ALL_PAGES",
+        "embeddable": true,
+        "publicDomain": false,
+        "textToSpeechPermission": "ALLOWED",
+        "epub": {
+          "isAvailable": false
+        },
+        "pdf": {
+          "isAvailable": false
+        },
+        "webReaderLink": "http://play.google.com/books/reader?id=RdMDAAAAMBAJ&hl=&printsec=frontcover&source=gbs_api",
+        "accessViewStatus": "SAMPLE",
+        "quoteSharingAllowed": false
+      },
+      "searchInfo": {
+        "textSnippet": "Whether it’s practical DIY home-improvement tips, gadgets and digital technology, information on the newest cars or the latest breakthroughs in science -- PM is the ultimate guide to our high-tech lifestyle."
       }
     }
   ]

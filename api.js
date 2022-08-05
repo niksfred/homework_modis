@@ -56,3 +56,13 @@ export async function deleteAnnotation(annotationId) {
         method: "DELETE",
       });
 }
+
+export async function updateAnnotation(annotation) {
+  await fetch(`http://localhost:3000/annotations/${annotation.id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "PUT",
+    body: JSON.stringify(annotation),
+  });
+}

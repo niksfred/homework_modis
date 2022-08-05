@@ -1,31 +1,57 @@
-import { fetchSearchResults, fetchFavourites, deleteFavourite, addFavourite, fetchAnnotations, createAnnotation } from "/api.js";
+import {
+  fetchSearchResults,
+  fetchFavourites,
+  deleteFavourite,
+  addFavourite,
+  fetchAnnotations,
+  createAnnotation,
+  deleteAnnotation,
+  updateAnnotation,
+} from "/api.js";
 
 (function atStart() {
   renderSearchPage();
 })();
 
+function getCheckIcon() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+</svg>`;
+}
+
+function getUncheckIcon() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+</svg>`;
+}
+
+function getEditIcon() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+</svg>`;
+}
+
 function getTrashIcon() {
   return `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-</svg>`
+</svg>`;
 }
 
-function getHeartIcon(type){
-const outlined = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+function getHeartIcon(type) {
+  const outlined = `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-</svg>`
+</svg>`;
 
-const filled = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  const filled = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
-</svg>`
+</svg>`;
 
-if (type && type === "filled") {
-  return filled
-} else {
-  return outlined
+  if (type && type === "filled") {
+    return filled;
+  } else {
+    return outlined;
+  }
 }
-}
-
 
 function getHeaderHTML(page) {
   const nextPage = page === "search" ? "Favourites" : "Search";
@@ -59,40 +85,90 @@ function renderHeader(page) {
   });
 }
 
-function renderAnotations(annotations, container){
-  annotations.forEach((annotation) => {
-    const {id, content} = annotation
-    const annotationEl = document.createElement("div");
-    annotationEl.classList.add("annotation-card")
-    annotationEl.dataset.annotationId = id
+function renderAnnotation(annotation, container) {
+  const { id, content } = annotation;
+  const annotationEl = document.createElement("div");
+  annotationEl.classList.add("annotation-card");
+  annotationEl.dataset.annotationId = id;
 
-    const contentEl = document.createElement("p")
-    contentEl.innerHTML = content
-    annotationEl.appendChild(contentEl)
+  const contentEl = document.createElement("p");
+  contentEl.innerHTML = content;
+  annotationEl.appendChild(contentEl);
 
-    const delButton = document.createElement("button")
+  const delButton = document.createElement("button");
+  delButton.innerHTML = getTrashIcon();
+  delButton.classList.add("annotation-button");
+  annotationEl.appendChild(delButton);
+  delButton.addEventListener("click", async () => {
+    await deleteAnnotation(id);
+    document
+      .querySelector(`.annotation-card[data-annotation-id="${id}"]`)
+      .remove();
+  });
 
-    // annotationEl.innerHTML = `<p>${content}</p>`
-    container.appendChild(annotationEl)
-  })
-} 
+  const editButon = document.createElement("button");
+  editButon.innerHTML = getEditIcon();
+  editButon.classList.add("annotation-button");
+  annotationEl.appendChild(editButon);
+  editButon.addEventListener("click", async () => {
+    const input = document.createElement("input");
+    input.value = content;
+    input.classList.add("annotation-input");
+    annotationEl.replaceChild(input, contentEl);
+    input.focus();
+
+    const saveButton = document.createElement("button");
+    saveButton.innerHTML = getCheckIcon();
+    saveButton.classList.add("annotation-button");
+    annotationEl.replaceChild(saveButton, editButon);
+    saveButton.addEventListener("click", async () => {
+      const newContent = {
+        id: annotation.id,
+        bookId: annotation.bookId,
+        content: input.value,
+      };
+      await updateAnnotation(newContent);
+      contentEl.innerHTML = newContent.content;
+      annotationEl.replaceChild(contentEl, input);
+      annotationEl.replaceChild(editButon, saveButton);
+      annotationEl.replaceChild(delButton, cancelButon);
+    });
+
+    const cancelButton = document.createElement("button");
+    cancelButton.innerHTML = getUncheckIcon();
+    cancelButton.classList.add("annotation-button");
+    annotationEl.replaceChild(cancelButton, delButton);
+    cancelButton.addEventListener("click", () => {
+      annotationEl.replaceChild(contentEl, input);
+      annotationEl.replaceChild(editButon, saveButton);
+      annotationEl.replaceChild(delButton, cancelButton);
+    });
+  });
+
+  container.appendChild(annotationEl);
+}
+
+function renderAnotations(annotations, container) {
+  annotations.forEach((annotation) => renderAnnotation(annotation, container));
+}
 
 async function renderContentCard(contentContainer, item, isFavourite, page) {
   console.log("renderContentCard");
   const { volumeInfo: bookInfo, id } = item;
 
-  
   const title = bookInfo.title;
   const authors = bookInfo?.authors?.join(", ");
   const description = bookInfo.description;
   const image = bookInfo.imageLinks.thumbnail;
-  
-  let favouriteIcon
+
+  let favouriteIcon;
   if (page === "favourites") {
-    favouriteIcon = getTrashIcon()
+    favouriteIcon = getTrashIcon();
   } else if (isFavourite) {
-    favouriteIcon =  getHeartIcon("filled") 
-  } else {favouriteIcon = getHeartIcon()}
+    favouriteIcon = getHeartIcon("filled");
+  } else {
+    favouriteIcon = getHeartIcon();
+  }
 
   const contentCard = document.createElement("div");
   contentCard.classList.add("content-card");
@@ -124,43 +200,52 @@ async function renderContentCard(contentContainer, item, isFavourite, page) {
   `;
   contentContainer.appendChild(contentCard);
 
-  const annotations = await fetchAnnotations(id)
-  console.log(annotations.length> 0)
+  const annotationsContainer = document.querySelector(
+    `[data-annotations-container="${id}"]`
+  );
+
+  const annotations = await fetchAnnotations(id);
+  console.log(annotations.length > 0);
   if (annotations.length > 0) {
-    const annotationsContainer = document.querySelector(`[data-annotations-container="${id}"]`)
-    renderAnotations(annotations, annotationsContainer)
+    renderAnotations(annotations, annotationsContainer);
   }
 
-  const favouriteButton = document.querySelector(`[data-favourites-id="${id}"]`)
+  const favouriteButton = document.querySelector(
+    `[data-favourites-id="${id}"]`
+  );
   favouriteButton.addEventListener("click", async () => {
-      if (page === "favourites"){
-        deleteFavourite(id)
-        document.querySelector(`[data-book-id=${id}]`).remove();
+    if (page === "favourites") {
+      deleteFavourite(id);
+      document.querySelector(`[data-book-id=${id}]`).remove();
+    } else {
+      const favourites = await fetchFavourites();
+      if (favourites.some((book) => book.id === id)) {
+        console.log("book info deleted from db");
+        await deleteFavourite(id);
+        favouriteButton.innerHTML = getHeartIcon("outlined");
       } else {
-          const favourites = await fetchFavourites();
-          if (favourites.some((book) => book.id === id)) {
-            console.log("book info deleted from db");
-            await deleteFavourite(id);
-            favouriteButton.innerHTML = getHeartIcon("outlined")
-          } else {
-            console.log("book info posted to db");
-            await addFavourite(item)
-            favouriteButton.innerHTML = getHeartIcon("filled")
-          }
-        }
-})
+        console.log("book info posted to db");
+        await addFavourite(item);
+        favouriteButton.innerHTML = getHeartIcon("filled");
+      }
+    }
+  });
 
-const newAnnotationInput = document.querySelector(`[data-new-annotation-value="${id}"]`)
-const addAnnotationButton = document.querySelector(`[data-add-annotation-book-id="${id}"]`)
-addAnnotationButton.addEventListener("click", async () => {
-  if(newAnnotationInput.value !== ""){
-    const newAnnotation = {bookId: id, content: newAnnotationInput.value}
-    await createAnnotation(newAnnotation)
-    newAnnotationInput.value = ""
-  }
- })
+  const newAnnotationInput = document.querySelector(
+    `[data-new-annotation-value="${id}"]`
+  );
+  const addAnnotationButton = document.querySelector(
+    `[data-add-annotation-book-id="${id}"]`
+  );
+  addAnnotationButton.addEventListener("click", async () => {
+    if (newAnnotationInput.value !== "") {
+      const newAnnotation = { bookId: id, content: newAnnotationInput.value };
+      await createAnnotation(newAnnotation);
+      newAnnotationInput.value = "";
+      renderAnnotation(newAnnotation, annotationsContainer);
+    }
+  });
 }
-
 
 async function renderContent(items, page, favouriteBooks = null) {
   console.log("renderContent");
@@ -169,14 +254,14 @@ async function renderContent(items, page, favouriteBooks = null) {
   document.body.appendChild(contentContainer);
   if (page === "favourites") {
     items.forEach((item) => {
-      renderContentCard(contentContainer, item, true,page);
+      renderContentCard(contentContainer, item, true, page);
     });
   } else {
-    console.log(favouriteBooks)
+    console.log(favouriteBooks);
     items.forEach((item) => {
-      let isFavourite = false
-      if (favouriteBooks.find(el => el.id === item.id)) {
-        isFavourite = true
+      let isFavourite = false;
+      if (favouriteBooks.find((el) => el.id === item.id)) {
+        isFavourite = true;
       }
       renderContentCard(contentContainer, item, isFavourite, page);
     });
@@ -184,7 +269,7 @@ async function renderContent(items, page, favouriteBooks = null) {
 }
 
 async function renderSearchPage() {
-  const page = "search"
+  const page = "search";
   document.body.innerHTML = "";
   console.log("renderSearchPage");
   renderHeader("search");
@@ -194,13 +279,13 @@ async function renderSearchPage() {
   searchButton.addEventListener("click", async () => {
     console.log("searchButton pressed");
     const items = await fetchSearchResults(searchInput.value);
-    const favouriteBooks = await fetchFavourites()
+    const favouriteBooks = await fetchFavourites();
     await renderContent(items, page, favouriteBooks);
   });
 }
 
 async function renderFavourites() {
-  const page = "favourites"
+  const page = "favourites";
   document.body.innerHTML = "";
   console.log("renderFavourites");
   renderHeader("favourites");

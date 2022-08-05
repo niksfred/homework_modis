@@ -138,11 +138,15 @@ header {
     margin-bottom: 8px;
 }
 
+
 .annotations-header>div>input {
-    width: 80%;
+    width: 85%;
     padding: 5px 0px; 
 }
 
+.annotations-container {
+    margin-right: 16px;
+}
 
 
 .annotation-card {
@@ -151,7 +155,7 @@ header {
 }
 
 .annotation-card p {
-    width: 80%;
+    width: 100%;
 }
 
 .actions-container {
@@ -171,20 +175,11 @@ header {
     height: 32px;
 }
 
-@media only screen and (max-width : 1010px) {
-    .content-card {
-        height: 480px;
-        flex-direction: column;
-        align-items: center;
-    }
+.annotation-button {
+    height: 24px;
+    width: 24px;
+}
 
-    .info-wrapper {
-        align-items: center;
-        justify-content: center;
-    }
-
-    .description {
-        padding: 0 16px 16px 16px;
-        height: 160px
-    }
+.annotation-input {
+    width: 100%;
 }
