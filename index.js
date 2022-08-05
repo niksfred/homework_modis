@@ -65,7 +65,14 @@ function renderAnotations(annotations, container){
     const annotationEl = document.createElement("div");
     annotationEl.classList.add("annotation-card")
     annotationEl.dataset.annotationId = id
-    annotationEl.innerHTML = `<p>${content}</p>`
+
+    const contentEl = document.createElement("p")
+    contentEl.innerHTML = content
+    annotationEl.appendChild(contentEl)
+
+    const delButton = document.createElement("button")
+
+    // annotationEl.innerHTML = `<p>${content}</p>`
     container.appendChild(annotationEl)
   })
 } 

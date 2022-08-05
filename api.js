@@ -47,3 +47,12 @@ export async function createAnnotation(annotation) {
     body: JSON.stringify(annotation),
   });
 }
+
+export async function deleteAnnotation(annotationId) {
+  await fetch(`http://localhost:3000/annotations/${annotationId}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "DELETE",
+      });
+}
