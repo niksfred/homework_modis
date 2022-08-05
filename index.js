@@ -276,6 +276,14 @@ async function renderSearchPage() {
   const searchButton = document.getElementById("search-button");
   const searchInput = document.getElementById("search-input");
 
+  searchInput.addEventListener("keyup", async (event) => {
+    if (event.key === "Enter") {
+      const items = await fetchSearchResults(searchInput.value);
+      const favouriteBooks = await fetchFavourites();
+      await renderContent(items, page, favouriteBooks);
+    }
+  });
+
   searchButton.addEventListener("click", async () => {
     console.log("searchButton pressed");
     const items = await fetchSearchResults(searchInput.value);
